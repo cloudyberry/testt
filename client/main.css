@@ -1,0 +1,1323 @@
+body {
+		background-color: lavender;
+}
+.modal-content {
+	font-family: "Century Gothic";
+	font-size: 15px;
+}
+
+
+.modal-header {
+	background-color:#000077;
+	color: white;
+}
+
+.modal-content ul {
+	list-style-type: none;
+ }
+.modal-body {
+	margin: 6px;
+
+}
+.modal-body * li {
+	padding: 10px 10px;
+
+}
+
+input[type="date"]::-webkit-inner-spin-button {
+	display: none;
+}
+
+input[type="date"]::-webkit-clear-button {
+	display: none;
+}
+
+input[type="date"], input[type="time"] {
+	appearance: none;
+	color: #95a5a6;
+	font-family: "Century Gothic";
+	font-size: 18px;
+	border:1px solid #ecf0f1;
+	background:#ecf0f1;
+	padding:5px;
+	display: inline-block !important;
+	visibility: visible !important;
+}
+
+input[type="date"], focus {
+	color: #95a5a6;
+	box-shadow: none;
+}
+
+
+input[type="time"]::-webkit-clear-button {
+	display: none;
+}
+
+input[type="time"], focus {
+	color: #95a5a6;
+	box-shadow: none;
+}
+
+body {
+	padding: 10px;
+	user-select: none;
+}
+
+html, body {
+	margin:0;
+	padding:0;
+}
+
+.clickable {
+	cursor: pointer;
+}
+
+#display{
+	margin:8px auto;
+	padding: 0;
+	font-size: 22px;
+	width: 250px;
+	text-align:left;
+	position: absolute;
+}
+/* changed the margins from percentages to pixels */
+#forward {
+	margin-top: 75px;
+	margin-left: 875px;
+	position: absolute;
+}
+/* changed the margins from percentages to pixels */
+#backward {
+	margin-top: 75px;
+	margin-left: 500px;
+	position: absolute;
+}
+
+#forwardMonth {
+	left:70%;
+	position: absolute;
+}
+
+#backwardMonth {
+	left:30%;
+	position: absolute;
+}
+
+.button {
+	padding: 3px 5px 10px 15px;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
+	background-color: white;
+	color: black;
+	border: 2px solid #aaaaaa;
+	font-family: "Century Gothic";
+}
+
+#activeMonth {
+	font-family: "Century Gothic";
+	font-size: 20px;
+	padding: 0px;
+	left: 41%;
+	position: absolute;
+	padding-top: 0%;
+}
+
+.logo {
+	height: 50px;
+	padding: 5px 0px;
+  margin-left: 200px;
+	float:left;
+
+}
+
+.cancelButton {
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	font-size: 15px !important;
+	display: none !important;
+}
+
+.topnav {
+	background-color: #000077;
+	font-family: "Courier New";
+	padding-right: 60px;
+  width: 100%;
+
+}
+.navButtons {
+margin-left: 55%	;
+}
+
+.navButtonsLogin {
+margin-left: 61%	;
+}
+.nav {
+	color: #f2f2f2;
+	text-align: center;
+	padding: 16px 20px;
+	text-decoration: none;
+	font-size: 18px;
+	margin-right: 20px;
+ float:left;
+
+}
+
+.nav:hover {
+	text-decoration:underline;
+}
+
+.topnav a.active {
+	background-color: #4CAF50;
+	color: white;
+}
+
+/* edited */
+#topbar  {
+	margin: 20px 114px;
+	width: 1185px;
+	position: relative;
+}
+
+#schedule {
+	height: 450px;
+	width: 1185px;
+	margin: 100px auto auto auto;
+	position: absolute;
+	display: inline;
+	left:115px;
+	top: 60px;
+
+}
+
+#mySlots {
+	height: 450px;
+	width: 85%;
+	margin: 100px auto auto auto;
+	position: absolute;
+	display: inline;
+	left:115px;
+	top: 60px;
+}
+
+.scheduleSlots {
+	position:absolute;
+	text-align: center;
+	line-height:10px;
+	border-radius: 10px;
+	padding-top: 17px;
+
+}
+
+.scheduleSlots:hover .cancelButton {
+	display:block !important;
+}
+
+.scheduleSlots:hover {
+	filter: grayscale(65%);
+	cursor: pointer;
+}
+
+.eventName{
+	padding: 0px auto;
+	font-family: "Arial Black", "Arial Bold", Gadget, sans-serif;
+	margin-bottom:0px;
+}
+
+.eventType {
+	padding:0px auto;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	margin-top: 0px;
+	font-style: italic;
+}
+
+.dropdown, .topbutton{
+	position: absolute;
+	display: inline-block;
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	right: 0;
+	background-color: #f9f9f9;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+}
+
+.dropdown-content a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+.dropdown-content a:hover {
+	background-color: #f1f1f1
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+.dropdown:hover .dropbtn {
+	background-color: #999999;
+}
+
+.icon {
+	font-size: 20px;
+	line-height: 100%;
+	display: inline-block;
+	position: relative;
+	top: 5px;
+}
+
+/* .arrow {
+	font-size: 40px;
+  line-height: 100%;
+	display: inline-block;
+	position: relative;
+  top: 0px;
+} */
+
+.profile {
+	position: absolute;
+	right:0;
+	padding: 13px;
+	display: inline-block;
+	font-family: "Century Gothic";
+
+}
+
+.profile-content {
+	display: none;
+	position: absolute;
+	right: 0;
+	background-color: #f9f9f9;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+}
+
+.profile-content a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+.profile-content a:hover {
+	background-color: #f1f1f1
+}
+
+.profile:hover .profile-content {
+	display: block;
+}
+
+.profile:hover .dropbtn {
+	background-color: #999999;
+}
+
+#schedule * {
+	border: 1px solid #AAAAAA;
+}
+
+#topTime {
+	font-family: "Century Gothic";
+	position: absolute;
+	margin: 20px 100px;
+	width: 1300px;
+
+}
+
+#topTime * td {
+	text-align: left;
+	width: 68.5px;
+}
+
+#schedule > table {
+	width: 100%;
+	height: 100%;
+}
+
+#schedule * td {
+	overflow: hidden;
+	height: 14.2857%;
+	width: 5.88%;
+}
+
+#days {
+	float: left;
+	margin-top: 40px;
+	margin-left: 70px;
+	padding-top: 0px;
+  font-family: "Century Gothic";
+	width: auto;
+}
+
+#days * td {
+	line-height:20px;
+	padding-bottom: 0px;
+	height: 64.3px;
+	padding-top: 12px;
+	font-size: 15px;
+
+}
+
+#days > table {
+	position: relative;
+	display:inline;
+	font-size:20px;
+	text-align: center;
+	vertical-align: center;
+	border-collapse: collapse;
+
+}
+
+#days * p {
+
+	font-size: 15px;
+}
+
+#schedule td:nth-child(even) {background: #EEE}
+#schedule td:nth-child(odd) {background: #FFF}
+
+
+
+#legendMonth{
+	font-family: "Courier New";
+	width: 1200px;
+	position: relative;
+	top: 505px;
+	font-size: 20px;
+	left: 11px;
+	margin: auto;
+}
+
+#legendWeek{
+	font-family: "Courier New";
+	width: 1200px;
+	position: relative;
+	top: 505px;
+	font-size: 20px;
+	left: 11px;
+	margin: auto;
+
+
+}
+
+#legendWeek * i {
+	font-size: 20px;
+	line-height: 100%;
+	display: inline-block;
+	position: relative;
+	top: 4px;
+}
+
+#legendMonth * i {
+	font-size: 20px;
+	line-height: 100%;
+	display: inline-block;
+	position: relative;
+	top: 4px;
+}
+
+.mainWork {
+	color: brown;
+
+}
+
+.mainPersonal {
+	color: red ;
+}
+
+.mainSchool {
+	color: yellow;
+}
+
+.mainSports {
+	color: green;
+}
+
+.mainRehearsal {
+	color: purple;
+}
+
+.create {
+	float: right;
+	padding: 8px;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
+	background-color: white;
+	color: black;
+	border: 2px solid #aaaaaa;
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	position: absolute;
+	top: 0;
+	margin-left: 1054px;
+	width: 125px;
+}
+
+#displayMonthly{
+	margin:0px auto;
+	padding: 0;
+	font-size: 28px;
+	width: 135px;
+	text-align:center;
+}
+
+
+.topDays {
+	font-family: "Century Gothic";
+	position: relative;
+	margin: 70px auto;
+	width: 85%;
+	font-size: 25px;
+}
+
+.topDays td {
+	width: 400px;
+	text-align: center;
+}
+
+img.backgroundLogin {
+	min-height: 100%;
+	min-width: 1024px;
+	width: 100%;
+	height: auto;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	filter: brightness(20%);
+	transform: scaleX(-1);
+}
+
+.logoLogin {
+	height: 50px;
+	margin-top: 10px;
+	padding: 5px 200px;
+	float:left;
+}
+
+.topnavLogin {
+	background-color: transparent;
+	overflow: hidden;
+	font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter";
+	height: 80px;
+	padding: 10px 0px;
+}
+
+.navLogin {
+	float: right;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 30px 40px;
+	text-decoration: none;
+	font-size: 18px;
+	margin-right: 20px;
+}
+
+.navLogin:hover {
+	text-decoration:underline;
+}
+
+.topnavLogin a.active {
+	background-color: #4CAF50;
+	color: white;
+}
+
+.form-titleLogin {
+	font-size: 30px;
+}
+
+.form-descriptionLogin {
+	font-size: 16px;;
+}
+
+.formLogin {
+	width: 450px;
+	margin: 10px auto;
+	float:right;
+	margin-right:50px;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.fieldsLogin {
+	background: #EEEEEE;
+	padding: 10px 30px 30px 30px;x`
+	border-radius: 10px 10px 0px 0px;
+	border-radius: 12px 12px 0px 0px;
+	height:500px;
+	font-family: "Arial";
+}
+
+.formLogin ul{
+	padding:0;
+	margin:0;
+	list-style:none;
+}
+
+.formLogin ul li{
+	display: block;
+	margin-bottom: 5px;
+	min-height: 35px;
+}
+
+.formLogin ul li  .field-style{
+	box-sizing: border-box;
+	padding: 8px;
+	outline: none;
+	border: 1px solid #;
+}
+
+.formLogin ul li .inline{
+	width: 49%;
+}
+
+.formLogin ul li .inline-block{
+	display:inline-block;
+}
+
+
+.formLogin ul li .block{
+	width: 100%;
+}
+
+.formLogin ul li input.align-right{
+	float:right;
+}
+
+.formLogin ul li input[type="button"],
+.formLogin ul li input[type="submit"] {
+	box-shadow: inset 0px 1px 0px 0px #3985B1;
+	background-color: #000077;
+	display: inline-block;
+	cursor: pointer;
+	color: #FFFFFF;
+	padding: 8px 18px;
+	text-decoration: none;
+	font: 12px Arial, Helvetica, sans-serif;
+}
+.formLogin ul li input[type="button"]:hover,
+.formLogin ul li input[type="submit"]:hover {
+	background: linear-gradient(to bottom, #2D77A2 5%, #337DA8 100%);
+	background-color: #28739E;
+}
+
+input[type="date"]::-webkit-inner-spin-button {
+	display: none;
+}
+
+input[type="date"]::-webkit-clear-button {
+	display: none;
+}
+
+input[type="date"] {
+	appearance: none;
+	color: #95a5a6;
+	font-family: "Helvetica", arial, sans-serif;
+	font-size: 18px;
+	border:1px solid #ecf0f1;
+	background:#ecf0f1;
+	padding:5px;
+	display: inline-block !important;
+	visibility: visible !important;
+}
+
+input[type="date"], focus {
+	color: #95a5a6;
+	box-shadow: none;
+}
+
+#signup {
+	display: inline;
+}
+
+#signin {
+	display: none;
+}
+
+.createAccountButton {
+	border: none;
+	color: black;
+	padding: 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	cursor: pointer;
+	border-radius: 0px 0px 12px 12px;
+	float:right;
+	width: 50%;
+
+}
+
+.signInButton {
+	border: none;
+	color: black;
+	padding: 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	cursor: pointer;
+	border-radius: 0px 0px 12px 12px;
+	float:left;
+	width: 50%;
+}
+
+.activeButton{
+	background-color: #EEEEEE;
+}
+
+.inactiveButton{
+	background-color: #888888;
+}
+
+.settingsIcon {
+ display: inline-block;
+	float: left;
+	font-size: 40px !important;
+	margin-left: 9%;
+}
+
+.settingsHeader {
+	text-align:left;
+	float:left;
+ 	display: inline-block;
+	margin-top: 5px;
+ 	padding: 0;
+}
+
+hr {
+    border: none;
+    height: 2px;
+    background-color: grey;
+    margin-top: 0px;
+}
+
+#fontSize {
+display: inline;
+float:left;
+font-size: 20px;
+}
+
+.settings {
+	margin-left:12.5%;
+}
+
+#activityColor	* {
+display: inline;
+float:left;
+
+
+}
+
+.updateButton input{
+  float: left;
+	margin-top: 100px;
+  background-color: blue;
+  color: white;
+  padding: 10px 27px;
+  text-align: center;
+  font-size: 13px;
+  cursor: pointer;
+  border-radius: 8px;
+  box-shadow: 0 5px #999;
+}
+.updateButton input:hover {
+	background-color: #1515BD
+}
+
+.updateButton input:active {
+  background-color: #1515BD;
+  box-shadow: none;
+  margin-bottom:0;
+  top: 10px;
+  transform: translateY(4px);
+}
+
+.aboutHeading {
+	text-align:center;
+	font-size: 80px;
+	margin-top: 50px;
+}
+
+.text1, .text2, .text3, .text4 {
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.aboutIcons {
+	margin: 10px auto;
+}
+
+.one, .two, .three, .four {
+  width: 250px;
+  height: 300px;
+  display: inline-block;
+  position: relative;
+  margin: 40px 20px;
+  vertical-align : top;
+}
+
+.aboutContainer {
+ margin-top : 100px;
+ text-align: center;
+}
+
+.supportHeading {
+	text-align:center;
+	font-size: 80px;
+	margin-top: 50px;
+}
+
+.address p, .number p, .email p {
+  position: relative;
+  height: 20px;
+  width: 300px;
+  margin-left: 120px;
+}
+
+.supportForm {
+  margin-left: 70px;
+  font-size: 20px;
+  width: 300px;
+  height:250px;
+}
+.name, .email, .subject,.message {
+  font-size: 15px;
+  width: 250px;
+  height: 40px;
+  font-family: "Raleway";
+}
+.sendicon {
+  position: absolute;
+  margin-top: 5px;
+  left: 80px;
+  color: white;
+}
+.submitbutton {
+  margin-left : 0px;
+  width: 130px;
+  text-align: right;
+  background-color:black;
+  color: white;
+  font-family: "Raleway";
+}
+.submitbutton: hover {
+  cursor: pointer;
+}
+
+#leftcontent {
+	float:left;
+}
+
+#map {
+  width:50%;
+  height:380px;
+  float: left;
+  margin-left: 150px;
+	margin-top: 50px;
+}
+
+.supporticons {
+  position: absolute;
+  top: 105px;
+  left: 70px;
+}
+
+.supportField {
+	text-indent: 10px;
+}
+
+#friendsHeader {
+	margin-left: 150px;
+	position:relative;
+	top: 20px;
+	display: inline-block;
+	margin-top: 5px;
+ padding: 0;
+}
+/* from here onwards are all new code basically for font family and resizing */
+.aboutContainer, .settings, .supportContent p{
+	font-family: "Comic Sans MS";
+}
+.settingsHeader {
+ font-family: "Comic Sans MS";
+  font-size: 50px;
+	margin-top: -10px;
+	margin-bottom: 30px;
+}
+.supportContent p {
+	font-size: 17px;
+	font-family: "Comic Sans MS";
+
+}
+.supportContent h3 {
+	font-family: "Comic Sans MS";
+}
+.dropbtn {
+ border: none;
+ background-color: #000077 !important;
+ z-index: 1;
+}
+.dropdowncontent {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 130px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+		top: 88%;
+		opacity: 0.9;
+		right: 50;
+		top: 0;
+		margin-top: 50px;
+		font-family: "Comic Sans MS";
+}
+.dropdowncontent a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+
+}
+.dropdowncontent a:hover {
+	background-color: #ddd;
+}
+.drop button:hover .dropdowncontent{
+		display: block;
+}
+
+@media (max-width: 1300px) {
+	.topnav {
+		width: 1400px;
+	}
+}
+/* resizing for the topnav */
+ @media (max-width: 1100px) {
+	.nav {
+		float: left;
+	}
+}
+
+@media (max-width: 1270px) {
+	.topnav img{
+		float: left;
+		margin-left: 0px;
+	}
+	 .navButtons {
+		margin-left: 30px;
+	 }
+}
+
+@media (max-width: 790px) {
+	.navButtons a {
+	 padding-right: 0px;
+	 padding-left: 0px;
+	}
+}
+
+@media (max-width: 640px) {
+  .topnav {
+		height: 110px;
+	}
+	.nav , .drop button{
+			margin-top: 50px;
+			position: relative;
+			left: -165px;
+			padding-left: 0px;
+	}
+  .arrow {
+		margin-top: 30px;
+	}
+	#schedule {
+		margin-top: 155px;
+	}
+	#legendWeek {
+    top: 480px;
+	}
+	#legendMonth {
+    top: 480px;
+	}
+	.create {
+		top: 25px;
+	}
+}
+
+/*EDIT PROFILE PAGE*/
+.profile {
+	position: relative;
+	padding: 13px;
+	display: inline-block;
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  max-width: 10px;
+}
+.profile-content {
+	display: none;
+	position: absolute;
+	right: 0;
+	background-color: #f9f9f9;
+	width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+}
+
+ .profile-content a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+.profile-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.profile:hover .profile-content {
+	display: block;
+}
+
+.profile:hover .dropbtn {
+	background-color: #999999;
+}
+
+.profilepage h1{
+	float: right;
+	font-size: 40px;
+	margin-right: 950px;
+	margin-top: 57px;
+	margin-bottom: 30px;
+}
+
+hr {
+  width: 83%;
+}
+
+.img-filter{
+    border-radius: 80%;
+    position: absolute;
+    margin-left: 200px;
+    margin-top : 20px;
+}
+/* adjust the size of the picture */
+.profile-img {
+	max-width: 300px;
+	height: 250px;
+	border-radius: 100%;
+	margin-left: 200px;
+	margin-top: 20px;
+}
+/* adjust the "choose file button" which is hidden in this case because of the z-index */
+.profileImage {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+#profile-btn {
+	margin: 20px 20px;
+  margin-left: 240px;
+}
+#upload-btn{
+		margin-top: 70px;
+    margin-left: -140px;
+}
+label {
+	color: #337ab7;
+	padding: 10px 10px;
+	border: 2px solid #337ab7;
+	border-radius: 5px;
+	margin-top:250px;
+	margin-left: 215px;
+}
+
+label:hover {
+	color: #5593c6;
+	border-color: #5593c6;
+	cursor: pointer;
+}
+
+.detailsonright{
+  margin-top: -30px;
+  width: 1300px;
+}
+
+#name {
+  display: block;
+  /* cursor: pointer; */
+  color: #292929;
+  font-family: sans-serif;
+  padding-bottom: 15px;
+  padding-right: 60px;
+}
+
+#aboutme {
+  display: block;
+  width: 350px;
+  height: 100px;
+}
+
+form li {
+  list-style: none;
+}
+.detailsonleft {
+  margin-top: 70px;
+  margin-left: 100px;
+}
+.detailsonleft li {
+  list-style: none;
+  padding-bottom: 20px;
+  padding-left: 0px;
+}
+
+#firstname {
+  float: right;
+  margin-right: 500px;
+  margin-top: -400px;
+}
+
+#lastname {
+  float: right;
+  margin-right: 200px;
+  margin-top: -400px;
+}
+#emailaddress {
+  float: right;
+  margin-right: 457px;
+  margin-top: -310px;
+}
+#birthdate {
+  float: right;
+  cursor: pointer;
+  margin-right: 564px;
+  margin-top: -228px;
+}
+#sex {
+  float: right;
+  margin-right: 628px;
+  margin-top: -140px;
+}
+#gender {
+  display: block;
+  font-size: 15px;
+}
+.updatebutton input {
+  float: right;
+  margin-top: -50px;
+  margin-right: 300px;
+  background-color: blue;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  box-shadow: 0 5px #999;
+}
+.updatebutton input:hover {background-color: #1515BD}
+
+.updatebutton input:active {
+  background-color: #1515BD;
+  box-shadow: none;
+  margin-bottom: 0;
+  top: 10px;
+  transform: translateY(4px);
+}
+
+/* resizing the pin button, the support and settings link  */
+@media (max-width: 620px){
+     #support {
+			 margin-left: 405px;
+			 position: absolute;
+		 }
+		 #settings {
+			 margin-left : 305px;
+			 position: absolute;
+		 }
+		  #pin {
+			 padding-left: 10px;
+			 padding-right: 10px;
+			 padding-bottom: 10px;
+	     position: relative;
+		 }
+		 .drop button {
+ 			position: absolute;
+ 			margin-top: 0px;
+ 			margin-left: 330px;
+  			font-size: 2px;
+ 			padding-right: 0px;
+ 		}
+}
+/* for the arrows above the schedule*/
+@media (max-width: 640px) {
+	#forward {
+		margin-top: 130px;
+	}
+	#backward {
+		margin-top: 130px;
+	}
+}
+
+/* resizing the update changes button for the settings page */
+@media ( max-width: 1350px) {
+
+	.updateButton input{
+		float: right;
+		margin-top: 81px;
+		margin-right: 10px;
+	}
+}
+/* resizing sports and rehearsal buttons so that they go to the next line properly */
+@media ( max-width: 1170px ) {
+	.rehearsal {
+		margin-left: 167px;
+	}
+	.rehearsalColor {
+		margin-top: 20px;
+	}
+}
+@media (max-width: 980px) {
+	.sports {
+		margin-left: 167px;
+		position: relative;
+	}
+	.sportsColor {
+		margin-top: 20px;
+	}
+	.rehearsal {
+		margin-left: 5px;
+	}
+}
+/*resizing the update changes button again */
+/*make school, sports and rehearsal move to the next line at the same time */
+@media (max-width: 790px) {
+	 .updateButton input {
+		margin-top: 81px;
+	}
+	.school {
+		margin-left: 167px;
+		position: relative;
+	}
+	.schoolColor{
+		margin-top: 20px;
+	}
+	.sports {
+		margin-left: 0px;
+	}
+	.rehearsal {
+		margin-left: 167px;
+	}
+}
+@media ( max-width: 570px) {
+	.personal {
+		margin-left: 33px;
+	}
+	.personalColor{
+		margin-top: 20px;
+	}
+	.sportsColor {
+		margin-top: 20px;
+	}
+	.sports {
+		margin-left: 166px;
+	}
+	.updateButton input {
+		float: left;
+		margin-top: -20px;
+	}
+}
+/* resizing for the large button */
+@media (max-width: 520px) {
+  #large {
+		margin-left: 81px;
+	}
+}
+ @media ( max-width: 470px) {
+  .settingsIcon {
+		margin-left: 10px;
+	}
+	.settingsHeader {
+		margin-left: 80px;
+		margin-top: -105px;
+	}
+}
+/* resizing for the support page*/
+/* resizing the map so that it does not float to the bottom  */
+ @media ( max-width: 1200px) {
+	#map {
+		width: 550px;
+		height: 380px;
+		float: right;
+		margin-right: 30px;
+	}
+}
+@media ( max-width: 1150px) {
+	#map {
+		width: 500px;
+		height: 380px;
+		float: right;
+		margin-right: 30px;
+	}
+}
+@media (max-width: 1100px) {
+	#map {
+		width: 450px;
+		height: 380px;
+		float: right;
+		margin-right: 30px;
+	}
+}
+@media (max-width: 1050px) {
+	#map {
+		width: 400px;
+		height: 380px;
+		float: right;
+		margin-right: 30px;
+	}
+}
+@media (max-width: 1000px) {
+	#map {
+		width: 350px;
+		height: 380px;
+		float: right;
+		margin-right: 30px;
+	}
+}
+@media ( max-width: 950px) {
+	#map {
+		float: right;
+		margin-left: 5px;
+	}
+}
+@media ( max-width: 805px) {
+	#map {
+		float: right;
+		height: 380px;
+		width: 250px;
+	}
+}
+@media ( max-width: 710px){
+	#map {
+		float: left;
+		margin-left: 75px;
+		width: 70%;
+	}
+}
+@media (max-width: 640px) {
+	.supporticons {
+		top: 160px;
+	}
+}

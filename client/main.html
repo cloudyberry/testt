@@ -1,0 +1,959 @@
+<head>
+  <title>Team SoftCom</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <!-- <link rel="stylesheet" type="text/css" href="main.css"> -->
+
+  <style>
+  .icon {
+   font-size: 20px;
+   line-height: 100%;
+   display: inline-block;
+   position: relative;
+   top: 5px;
+ }
+
+ .arrow {
+   font-size: 40px;
+   line-height: 100%;
+   display: inline-block;
+   top: 0px;
+ }
+  </style>
+</head>
+
+<body>
+  <script>
+    function goForwardMonth() {
+      localStorage.currentMonth = (Number(localStorage.currentMonth) + 1);
+      if (Number(localStorage.currentMonth) > 11) {
+        localStorage.currentMonth = 0;
+      }
+      location.reload();
+
+    };
+
+    function goBackMonth() {
+      localStorage.currentMonth = (Number(localStorage.currentMonth) - 1);
+      if (Number(localStorage.currentMonth) < 0) {
+        localStorage.currentMonth =11;
+      }
+      location.reload();
+
+    };
+
+    function goBackWeek() {
+
+      var x = localStorage.displayWeek;
+      var y = new Date(x);
+      if (y.getDate() > 7) {
+        y.setDate(y.getDate() - 7);
+        localStorage.displayWeek = y;
+      } else {
+        y.setMonth(y.getMonth() -1);
+        var diff = 7-y.getDate();
+        switch (y.getMonth()) {
+          case 0: y.setDate(31 - diff); break;
+
+          case 1:
+          if (y.getYear % 4 ==0) {
+            y.setDate(29 - diff);
+          } else {
+            y.setDate(28 - diff);
+          }
+          break;
+
+          case 2: y.setDate(31 - diff); break;
+          case 3: y.setDate(30 - diff); break;
+          case 4: y.setDate(31 - diff); break;
+          case 5: y.setDate(30 - diff); break;
+          case 6: y.setDate(31 - diff); break;
+          case 7: y.setDate(31 - diff); break;
+          case 8: y.setDate(30 - diff); break;
+          case 9: y.setDate(31 - diff); break;
+          case 10: y.setDate(30 - diff); break;
+          case 11: y.setDate(31 - diff); break;
+        }
+      }
+      localStorage.displayWeek = y;
+      location.reload();
+    };
+
+    function goForwardWeek() {
+      var x = localStorage.displayWeek;
+      var y = new Date(x);
+      var noDays;
+      switch (y.getMonth()) {
+        case 0: noDays = 31; break;
+
+        case 1:
+        if (y.getYear % 4 ==0) {
+         noDays = 29 ;
+       } else {
+        noDays = 28;
+      }
+      break;
+
+      case 2: noDays = 31 ; break;
+      case 3: noDays = 30; break;
+      case 4: noDays = 31 ; break;
+      case 5: noDays = 30 ; break;
+      case 6: noDays = 31 ; break;
+      case 7: noDays = 31 ; break;
+      case 8: noDays = 30; break;
+      case 9: noDays = 31; break;
+      case 10:noDays = 30 ; break;
+      case 11: noDays = 31 ; break;
+    }
+
+    if (y.getDate() > noDays-7) {
+      y.setMonth(y.getMonth() + 1);
+      y.setDate(y.getDate() + 7 - noDays);
+
+    } else {
+      y.setDate(y.getDate() + 7)
+
+    }
+    localStorage.displayWeek = y;
+    location.reload();
+  };
+
+  function changeWeekly() {
+    if (Number(localStorage.currentView) == 1) {
+      localStorage.currentView = 0;
+      location.reload();
+    }
+  };
+
+  function changeMonthly() {
+    if (Number(localStorage.currentView) == 0) {
+      localStorage.currentView = 1;
+      location.reload();
+    }
+  };
+
+  function changeSignIn() {
+    document.getElementById("signin").style.display = "inline";
+    document.getElementById("signup").style.display = "none";
+  }
+
+  function changeCreateAccount() {
+    document.getElementById("signin").style.display = "none";
+    document.getElementById("signup").style.display = "inline";
+  }
+
+</script>
+</body>
+
+<template name="test">
+  {{#each slots}}
+  {{getEventName}} + " " + {{getEventType}}
+  {{/each}}
+</template>
+
+<template name="weeklyView">
+  <div id="activeMonth ">
+   {{{updateDate}}}
+ </div>
+
+<!-- edited the margin-left -->
+ <div style="margin-left:670px;margin-top: 20px; font-size:30px;">
+  {{{getCurrentYear}}}
+</div>
+
+<!-- deleted the style for the arrows, shifted them to css file -->
+<i id="backward" class="material-icons arrow" onclick="goBackWeek()">arrow_left</i>
+<i id="forward" class="material-icons arrow" onclick="goForwardWeek()">arrow_right</i>
+<!-- <i id="backwardMonth" class="material-icons arrow" onclick="goBackMonth()" style="cursor: pointer;top: 75px;left:33%">skip_previous</i>
+<i id="forwardMonth" class="material-icons arrow" onclick="goForwardMonth()" style="cursor: pointer;top: 75px;left:67%">skip_next</i> -->
+
+<div id="days">
+  {{{buildWeekDays}}}
+</div>
+
+<div id="topTime">
+  {{{buildWeekTime}}}
+</div>
+
+<div id="schedule">
+
+  {{{buildWeekTable}}}
+
+
+</div>
+<div id="mySlots">
+  {{{buildSlots}}}
+</div>
+
+<div id="legendWeek">
+  <p><b>Legend:</b>
+    <i class="material-icons arrow mainWork">work</i> Work
+    <i class="material-icons arrow mainPersonal">face</i> Personal
+    <i class="material-icons arrow mainSchool">favorite</i> School
+    <i class="material-icons arrow mainSports">directions_run</i> Sports
+    <i class="material-icons arrow mainRehearsal">stars</i> Rehearsal
+ </p>
+  <button type="button" class="create" style="float:right;" data-toggle="modal" data-target="#createEvent">Create Event</button>
+  {{createEvent}}
+</div>
+</template>
+
+<template name="monthlyView">
+  <div id="activeMonth">
+    <p id="displayMonthly">{{displayMonth}}</p>
+  </div>
+
+  <i id="backwardMonth" class="material-icons arrow" onclick="goBackMonth()" style="cursor: pointer; top: 73px; left:35%">skip_previous</i>
+  <i id="forwardMonth" class="material-icons arrow" onclick="goForwardMonth()" style="cursor: pointer;top: 73px;left:65%">skip_next</i>
+
+  <div class="topDays">
+    <table>
+      <tr>
+        <td>Sun</td>
+        <td>Mon</td>
+        <td>Tues</td>
+        <td>Wed</td>
+        <td>Thurs</td>
+        <td>Fri</td>
+        <td>Sat</td>
+      </tr>
+    </table>
+
+  </div>
+
+
+  <div class="dropdown" style="top: 73px; left:58%">
+    <button class="button">2018 <i class="material-icons icon">arrow_drop_down</i></button>
+    <div class="dropdown-content" style="left:0;">
+      <a href="#">2017</a>
+      <a href="#">2018</a>
+      <a href="#">2019</a>
+    </div>
+  </div>
+
+  <div id="schedule">
+    {{{buildMonthTable}}}
+  </div>
+  <div id="legendMonth">
+   <p><b>Legend:</b>  <i class="material-icons arrow mainWork">work</i> Work              <i class="material-icons arrow mainPersonal">face</i> Personal               <i class="material-icons arrow mainSchool">favorite</i> School              <i class="material-icons arrow mainSports">directions_run</i> Sports              <i class="material-icons arrow mainRehearsal">stars</i> Rehearsal              </p>
+
+   <button type="button" class="create" style="float:right;" data-toggle="modal" data-target="#createEvent">Create Event</button>
+   {{> createEvent}}
+
+ </div>
+
+</template>
+
+<template name="viewMode">
+  <div id="topbar">
+    <div class="dropdown" style="left:0;">
+      <button class="button">View Mode <i class="material-icons icon">arrow_drop_down</i></button>
+      <div class="dropdown-content" style="left:0;">
+        <a href="#" class="clickable" onclick="changeWeekly()">Weekly</a>
+        <a class="clickable" onclick="changeMonthly()">Monthly</a>
+      </div>
+    </div>
+
+    <div class="dropdown" style="right:150px">
+      <button class="button">Import From <i class="material-icons icon">arrow_drop_down</i></button>
+      <div class="dropdown-content" style="left:0;">
+       <a href="#">Google Calendar</a>
+       <a href="#">Apple Calendar</a>
+       <a href="#">Microsoft Outlook</a>
+     </div>
+   </div>
+
+   <div class="topbutton" style="right:0;">
+
+    <button type="button" class="button" style="float:right" data-toggle="modal" data-target="#addEvent">Add Event <i class="material-icons icon">add</i></button>
+    {{>   addEvent}}
+
+  </div>
+</div>
+
+{{#if weeklyViewMode.active}}
+{{> weeklyView}}
+{{else}}
+{{> monthlyView}}
+{{/if}}
+
+</template>
+
+<template name="addEvent">
+  <div id="addEvent" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><b>Add New Event</b></h4>
+        </div>
+        <div class="modal-body">
+          <form class="add-event" autocomplete="off">
+           <ul>
+            <li>
+             Event Name:  &nbsp;   <input type="text" name="eventName" placeholder="Event Name" autocomplete="off"/></li>
+             <li> Event Type:      &nbsp;  &nbsp;  &nbsp;
+              <input type="radio" name="eventType" value="Work" checked> Work
+              <input type="radio" name="eventType" value="Personal"> Personal
+              <input type="radio" name="eventType" value="School"> School
+              <input type="radio" name="eventType" value="Sports"> Sports
+              <input type="radio" name="eventType" value="Rehearsal"> Rehearsal
+            </li> <br>
+            <li>
+              Duration:  &nbsp; &nbsp;  <input type="number" name="duration" style="width:50px"> minutes
+            </li>
+            <li>
+              Start Time:  &nbsp; &nbsp; <input type="time" name="startTime">
+            </li>
+            <li>
+              Date:  &nbsp; <input type="date" name="eventDate">
+            </li>
+          </ul>
+
+          <input type="submit" value="Add Event" style="font-weight: bold; float:right; border-radius: 50px;background-color:#000077;color:white; height: 50px;width: 250px;"/>
+        </form>
+
+      </div>
+      <div class="modal-footer">
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</template>
+
+<template name="createEvent">
+  <div id="createEvent" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><b>Create New Event</b></h4>
+        </div>
+        <div class="modal-body">
+          <form autocomplete="off">
+            <ul>
+              <li>
+               Event Name:  &nbsp;  &nbsp;   <input type="text" name="eventName" placeholder="Event Name" /></li>
+               <li> Event Type:      &nbsp;  &nbsp;  &nbsp; <input type="radio" name="eventType" value="work" checked> Work
+                <input type="radio" name="eventType" value="Personal"> Personal
+                <input type="radio" name="eventType" value="School"> School
+              </li> <br>
+              <li>
+                Time Range:  &nbsp; &nbsp;  From   <input type="time" name="startTime"> to <input type="time" name="endTime">
+              </li>
+              <li>
+                Date Range:  &nbsp; From   <input type="date" name="startDate"> to <input type="date" name="endDate">
+              </li>
+              <li>
+                Team Members: &nbsp;  &nbsp;  <input type="text" name="teamMembers" style="width:350px; height: 100px;" />
+              </li>
+            </ul>
+          </form>
+        </div>
+        <div class="modal-footer">
+         <input type="checkbox" name="rank" value="isRanked" style="float:left"> <p style="float:left; text-align:left;">&nbsp;Rank By Descending Number of <br>&nbsp;Members Attending</p>
+         <input type="submit" value="Find Timeslot" style="font-weight: bold; float:right; border-radius: 50px;background-color:#000077;color:white; height: 50px;width: 250px;"/>
+       </div>
+     </div>
+
+   </div>
+ </div>
+</template>
+
+<template name="main">
+  <div class="topnav">
+    <a href="#"><img src="https://preview.ibb.co/gy925J/Untitled.png" alt="calendar" class="logo "></a>
+    <div style="position: static; left: 400px; top:18px; position: absolute;">
+    <!--  {{> loginButtons}} -->
+    </div>
+
+    <!-- added in for every template -> pin button that will have dropdown -->
+    <div class="navButtons">
+      <a href="/main" id="home" class="nav">Home</a>
+      <a href="/about" id="about" class="nav">About</a>
+      <a href="/settings" id="settings" class="nav">Settings</a>
+      <a href="/support" id="support" class="nav">Support</a>
+    </div>
+
+
+    <!-- new div created here for the dropdown -->
+     <div class="drop">
+      <script type="text/javascript" src="main.js"></script>
+      <button class="dropbtn">
+      <i id="pin" class="material-icons pin" style="font-size:30px; margin-top: 15px; color: white">person_pin</i>
+      <div id="myDropDown" class="dropdowncontent">
+        <a href="/editprofile"> Edit Profile </a>
+        <a href="#"> Friends Circle </a>
+        <a href="#"> Settings </a>  <!--change password is here -->
+        <a href="#" id="logout"> Log Out </a>
+      </div>
+      </button>
+    </div>
+  </div>
+</template>
+
+
+<template name="loginPage">
+  <img class="backgroundLogin" src="http://cbre.cdnist.com/wp-content/uploads/2016/11/thumbnail-09738a3dc7b90e04d7fa004ebf800f90.jpeg" alt="office" width="300" height="300">
+
+  <div class="topnavLogin">
+    <a href="#"><img src="https://preview.ibb.co/gy925J/Untitled.png" alt="calendar" class="logo "></a>
+    <div style="margin-top:16px;margin-left: 50px; float:left">
+    </div>
+
+    <div class="navButtonsLogin">
+      <a href="/main" id="home" class="nav">Home</a>
+      <a href="/about" id="about" class="nav">About</a>
+      <a href="/settings" id="settings" class="nav">Settings</a>
+      <a href="/support" id="support" class="nav">Support</a>
+    </div>
+  </div>
+</template>
+
+<!-- new template for the registering, basically its like loading the sign in and new user tabs -->
+<template name="register">
+  <div class="formLogin" id="signup">
+    <form class="fieldsLogin register" >
+      <h3 class="form-titleLogin" style="font-weight:bold;">Scheduling Made Easy</h3>
+      <p class="form-descriptionLogin">Create an account with us:</p>
+      <ul>
+        <li>
+          <input type="text" name="username" class="field-style block align-none" placeholder="Username" />
+        </li>
+        <li>
+          <input type="text" name="firstName" class="field-style inline align-left" placeholder="First Name" />
+          <input type="text" name="lastName" class="field-style inline align-right" placeholder="Last Name" />
+        </li>
+        <li>
+          <input type="email" name="email" class="field-style block align-none" placeholder="Email" />
+        </li>
+        <li>
+          <input type="password" name="password" class="field-style block align-none" placeholder="Password" />
+        </li>
+        <li style="padding-top:20px;">
+          Gender:
+          <input type="radio" name="gender" value="male" checked class="inline-block"> Male
+          <input type="radio" name="gender" value="female" class="inline-block"> Female<br>
+        </li>
+        <li>
+          Date of Birth: <input type="date" name="bday">
+        </li>
+        <h5 style="color: #888888">
+          By clicking "Creating Account", you agree to our Terms, Data Policy and Cookie Policy. You may receive SMS notifications from us and can opt out at any time.
+        </h5>
+        <li>
+          <input type="submit" value="Create Account" style="float:right"/>
+        </li>
+      </ul>
+    </form>
+    <button onclick="changeSignIn()" class="signInButton inactiveButton" ><strong>Sign In</strong></button>
+    <button class="createAccountButton activeButton" onclick="changeCreateAccount()"><strong>New User</strong></button>
+  </div>
+</template>
+
+<!-- template created for login page so that i dont need to use the loginbuttons and can load template when not logged in yet -->
+<template name="login">
+  <div class="formLogin" id="signin">
+    <form class="fieldsLogin">
+      <h3 class="form-titleLogin" style="font-weight:bold;">Welcome Back</h3>
+      <p class="form-descriptionLogin">Login with your existing account:</p>
+      <ul>
+      <li>
+        <input type="text" name="username" class="field-style block align-none" placeholder="Username" />
+      </li>
+      <li>
+        <input type="password" name="password" class="field-style block align-none" placeholder="Password" />
+      </li>
+       <li>
+          <input type="submit" value="Sign In" style="float:right"/>
+        </li>
+      </ul>
+                 <!--  {{> loginButtons}} -->
+      <h4 style="margin-top:10px;font-weight:bold; font-size: 22px">What's New?</h4>
+        <ul>
+          <i class="material-icons" style="float:left; font-size: 3rem; padding-right: 10px">check</i>
+          <li style="font-size: 17px; padding-top: 2px; margin-top:20px"> No more manual inputs </li>
+          <i class="material-icons" style="float:left; font-size: 3rem; padding-right: 10px">check</i>
+          <li style="font-size: 17px; margin-top:8px"> No more conflict in schedules </li>
+        <i class="material-icons" style="float:left; font-size: 3rem; padding-right: 10px">check</i>
+          <li style="font-size: 17px; margin-top:8px"> Mass scheduling for big groups is possible </li>
+        </ul>
+    </form>
+    <button class="signInButton activeButton" onclick="changeSignIn()"><strong>Sign In</strong></button>
+    <button class="createAccountButton inactiveButton" onclick="changeCreateAccount()"><strong>New User</strong></button>
+  </div>
+</template>
+
+<template name="settings">
+  <div class="topnav">
+    <a href="#"><img src="https://preview.ibb.co/gy925J/Untitled.png" alt="calendar" class="logo "></a>
+    <div style="position: static; left: 400px; top:18px; position: absolute;">
+      <!--  {{> loginButtons}} -->
+    </div>
+
+<!-- added this for almost every template so that the pin shows no matter which tab i click -->
+    <div class="navButtons">
+      <a href="/main" id="home" class="nav">Home</a>
+      <a href="/about" id="about" class="nav">About</a>
+      <a href="/settings" id="settings" class="nav">Settings</a>
+      <a href="/support" id="support" class="nav">Support</a>
+    </div>
+    <div class="drop">
+     <script type="text/javascript" src="main.js"></script>
+     <button class="dropbtn">
+     <i id="pin" class="material-icons pin" style="font-size:30px; margin-top: 15px; color: white">person_pin</i>
+     <div id="myDropDown" class="dropdowncontent">
+       <a href="/editprofile"> Edit Profile </a>
+       <a href="#"> Friends Circle </a>
+       <a href="#"> Settings </a>  <!--change password is here -->
+       <a href="#" id="logout"> Log Out </a>
+     </div>
+     </button>
+   </div>
+  </div>
+  <div style="padding: 80px;">
+    <i class="material-icons settingsIcon">settings</i>
+    <h1 class="settingsHeader">  &nbsp;  Settings</h1>
+  </div>
+
+  <hr style="width:75%;font-weight: 30px;size:20;">
+  <form class="settings">
+    <p id="fontSize">Font Size: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    <!-- Edited font size i think-->
+    <div style="font-size: 17px">
+      <input type="radio" id="small" name="fontsize" value="small">&nbsp;Small &nbsp;&nbsp;
+      <input type="radio" id="medium" name="fontsize" value="medium"> &nbsp;Medium&nbsp;&nbsp;
+      <input type="radio" id="large" name="fontsize" value="large"> &nbsp;Large&nbsp;&nbsp;
+    </div>
+    <br>
+    <!-- Edited font size i think-->
+    <div id="activityColor" style="margin-top: 40px; font-size: 17px">
+      <p style="font-size: 20px;display:inline;float: left;">Activity Color:</p>
+
+      <div class="workColor">
+        <p class="work" style="padding-top:3px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Work&nbsp;&nbsp;</p>
+        <select style="margin-top:5px" >
+         <option value="default">Blue</option>
+         <option value="black">Black</option>
+         <option value="green">Green</option>
+         <option value="pink">Pink</option>
+         <option value="purple">Purple</option>
+         <option value="red">Red</option>
+         <option value="yellow">Yellow</option>
+        </select>
+      </div>
+
+      <div class="personalColor">
+        <p class="personal" style="padding-top:5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Personal&nbsp;&nbsp;</p>
+        <select class="personalColor" style="margin-top:5px" >
+         <option value="default">Red</option>
+          <option value="black">Black</option>
+          <option value="blue">Blue</option>
+          <option value="green">Green</option>
+          <option value="pink">Pink</option>
+          <option value="purple">Purple</option>
+          <option value="yellow">Yellow</option>
+         </select>
+      </div>
+
+      <div class="schoolColor">
+         <p class="school" style="padding-top:5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;School&nbsp;&nbsp;</p>
+         <select style="margin-top:5px" >
+          <option value="default">Yellow</option>
+          <option value="black">Black</option>
+          <option value="blue">Blue</option>
+          <option value="green">Green</option>
+          <option value="pink">Pink</option>
+          <option value="purple">Purple</option>
+          <option value="red">Red</option>
+         </select>
+       </div>
+
+       <div class="sportsColor">
+          <p class="sports" style="padding-top:5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sports&nbsp;&nbsp;</p>
+          <select class="sportsColor" style="margin-top:5px">
+           <option value="default">Green</option>
+           <option value="black">Black</option>
+           <option value="blue">Blue</option>
+           <option value="pink">Pink</option>
+           <option value="purple">Purple</option>
+           <option value="red">Red</option>
+           <option value="yellow">Yellow</option>
+          </select>
+        </div>
+
+        <div class="rehearsalColor">
+         <p class="rehearsal" style="padding-top:5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rehearsal&nbsp;&nbsp;</p>
+         <select class="rehearsalColor" style="margin-top:5px" >
+          <option value="default">Purple</option>
+          <option value="black">Black</option>
+          <option value="blue">Blue</option>
+          <option value="green">Green</option>
+          <option value="pink">Pink</option>
+          <option value="red">Red</option>
+          <option value="yellow">Yellow</option>
+        </select>
+      </div>
+    </div>
+
+<br>
+<div class="updateButton">
+  <input type="submit" value="Update Changes"/>
+</div>
+</form>
+
+</template>
+
+<template name="about">
+  <div class="topnav">
+    <a href="#"><img src="https://preview.ibb.co/gy925J/Untitled.png" alt="calendar" class="logo "></a>
+    <div style="position: static; left: 400px; top:18px; position: absolute;">
+      <!--  {{> loginButtons}} -->
+    </div>
+
+    <!-- added in -->
+    <div class="navButtons">
+      <a href="/main" id="home" class="nav">Home</a>
+      <a href="/about" id="about" class="nav">About</a>
+      <a href="/settings" id="settings" class="nav">Settings</a>
+      <a href="/support" id="support" class="nav">Support</a>
+    </div>
+
+    <div class="drop">
+     <script type="text/javascript" src="main.js"></script>
+     <button class="dropbtn">
+     <i id="pin" class="material-icons pin" style="font-size:30px; margin-top: 15px; color: white">person_pin</i>
+     <div id="myDropDown" class="dropdowncontent">
+       <a href="/editprofile"> Edit Profile </a>
+       <a href="#"> Friends Circle </a>
+       <a href="#"> Settings </a>  <!--change password is here -->
+       <a href="#" id="logout"> Log Out </a>
+     </div>
+     </button>
+   </div>
+  </div>
+
+
+  <div class="aboutContainer">
+    <h1 class="aboutHeading" style="font-size: 50px">About the Team</h1>
+    <div class="one">
+      <i class="material-icons aboutIcons" style="font-size:60px">person_pin</i>
+      <p class="text1" style="margin-top:30px; font-size: 23px">Who Are We?</p>
+      <p style="padding-top:20px;text-align: center;font-size: 18px ; font-family: cursive"> We are a team of 2 NUS students embarking on this Orbital journey to explore different coding languages and to create our own unique web application.</p>
+    </div>
+    <div class="two">
+      <i class="material-icons aboutIcons" style="font-size:60px">favorite</i>
+      <p class="text2" style="margin-top:30px;font-size: 23px">What is our Motivation?</p>
+      <p style="padding-top:20px;text-align: center; font-size: 18px; font-family: cursive">We are passionate about coding and would like to use our skills to solve real world problems.</p>
+    </div>
+    <div class="three">
+      <i class="material-icons aboutIcons" style="font-size:60px">sentiment_very_satisfied</i>
+      <p class="text3" style="margin-top:30px;font-size: 23px">What is Our Goal?</p>
+      <p style="padding-top:20px;text-align: center; font-size: 18px; font-family: cursive">To create a web application that solves the conflicts which arise during mass scheduling.</p>
+    </div>
+    <div class="four">
+      <i class="material-icons aboutIcons" style="font-size:60px">directions</i>
+      <p class="text4" style="margin-top:30px;font-size: 23px">Why This Project?</p>
+      <p style="padding-top:20px;text-align: center; font-size: 18px; font-family: cursive">Almost everybody faces the problem of conflicting schedules when arranging for meetups, therefore solving the problem will benefit many people.</p>
+    </div>
+  </div>
+</template>
+
+<template name="support">
+   <div class="topnav">
+    <a href="#"><img src="https://preview.ibb.co/gy925J/Untitled.png" alt="calendar" class="logo "></a>
+    <div style="position: static; left: 400px; top:18px; position: absolute;">
+    <!--  {{> loginButtons}} -->
+    </div>
+
+    <!-- added in -->
+    <div class="navButtons">
+      <a href="/main" id="home" class="nav">Home</a>
+      <a href="/about" id="about" class="nav">About</a>
+      <a href="/settings" id="settings" class="nav">Settings</a>
+      <a href="/support" id="support" class="nav">Support</a>
+    </div>
+    <div class="drop">
+     <script type="text/javascript" src="main.js"></script>
+     <button class="dropbtn">
+     <i id="pin" class="material-icons pin" style="font-size:30px; margin-top: 15px; color: white">person_pin</i>
+     <div id="myDropDown" class="dropdowncontent">
+       <a href="/editprofile"> Edit Profile </a>
+       <a href="#"> Friends Circle </a>
+       <a href="#"> Settings </a>  <!--change password is here -->
+       <a href="#" id="logout"> Log Out </a>
+     </div>
+     </button>
+    </div>
+   </div>
+
+    <div class="supportContent">
+      <!-- Edited font-size-->
+      <h3 class="supportHeading" style="font-size: 50px">Support</h3>
+      <h3 style="text-align:center">Having queries? Drop us a message!</h3>
+      <div id="leftcontent">
+        <div class="address">
+          <i class="material-icons supporticons" style="font-size:30px; margin-top:150px">location_on</i>
+           <!-- Edited margin-top-->
+          <p style="margin-top:45px"> 13 Computing Drive 117417, Singapore </p>
+        </div>
+        <div class="number">
+          <i class="material-icons supporticons" style="font-size:30px; margin-top:200px">phone</i>
+          <p style="margin-top:30px"> Phone: +65 6537 2383 </p>
+        </div>
+        <div class="email">
+          <i class="material-icons supporticons" style="font-size:30px; margin-top:250px">email</i>
+          <!-- Edited margin-top-->
+          <p style="margin-top:28px"> Email: mail@comp.nus.edu.sg </p>
+        </div>
+        <form class="supportForm" action="/action_ page.php" target="_blank">
+          <p><input class="name supportField" type="text" placeholder="Name" required name="Name"></p>
+          <p><input class="email supportField" type="text" placeholder="Email" required name="Email"></p>
+          <p><input class="subject supportField" type="text" placeholder="Subject" required name="Subject"></p>
+          <p><input class="message supportField" type="text" placeholder="Message" required name="Message"></p>
+          <p>
+            <button class="submitbutton" type="submit" style="width:190px;font-size:20px;">
+              <i class="material-icons sendicon">send</i>
+              <p class="sendmessage" style="margin-top:3px;margin-right:5px;"> Submit Message </p>
+            </button>
+          </p>
+        </form>
+      </div>
+    </div>
+    <div id="map"></div>
+    <script>
+      function myMap() {
+          // the location of NUS SOC
+          var location= {lat: 1.295133, lng: 103.773889};
+          // the map centered at NUS SOC
+          var map=new google.maps.Map(document.getElementById('map'), {zoom:16, center: location});
+          // The marker, positioned at NUS SoftCom
+          var marker = new google.maps.Marker({position: location, map: map});
+        }
+      </script>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5LLgP2M_lYhWnVyIZsYB7jLY5QfAdyPU&callback=myMap"></script>
+</template>
+
+<template name="editprofile">
+  <div class="topnav">
+   <a href="#"><img src="https://preview.ibb.co/gy925J/Untitled.png" alt="calendar" class="logo "></a>
+   <div style="position: static; left: 400px; top:18px; position: absolute;">
+   <!--  {{> loginButtons}} -->
+   </div>
+
+   <!-- added in -->
+   <div class="navButtons">
+     <a href="/main" id="home" class="nav">Home</a>
+     <a href="/about" id="about" class="nav">About</a>
+     <a href="/settings" id="settings" class="nav">Settings</a>
+     <a href="/support" id="support" class="nav">Support</a>
+   </div>
+   <div class="drop">
+    <script type="text/javascript" src="main.js"></script>
+    <button class="dropbtn">
+    <i id="pin" class="material-icons pin" style="font-size:30px; margin-top: 15px; color: white">person_pin</i>
+    <div id="myDropDown" class="dropdowncontent">
+      <a href="/editprofile"> Edit Profile </a>
+      <a href="#"> Friends Circle </a>
+      <a href="#"> Settings </a>  <!--change password is here -->
+      <a href="#" id="logout"> Log Out </a>
+    </div>
+    </button>
+   </div>
+  </div>
+
+
+  <div class="profilepage" style="font-family:Comic Sans MS">
+    <h1>Edit Profile</h1>
+    <i class="material-icons id" style="font-size: 40px;margin-top: 60px;margin-left:130px">assignment_ind</i>
+  <hr>
+  {{#with UserImages}}
+  <img src="{{image}}" class="profile-img" id="deletepicture">
+    <form class="updatepic" enctype="multipart/form-data">
+    <label for="profileImage" style="float:left;margin-top:20px;margin-left: 260px;">Change Profile Picture</label>
+    <span id="filename"></span>
+    <input type="file" name="profileImage" id="profileImage"  class="black profileImage" >
+    <br>
+    <button type="submit" value="Upload Photo" id="upload-btn" class="btn btn-sml btn-primary">Upload Photo</button>
+    </form>
+  {{else}}
+  <!-- for users to edit their profile picture, and also upload the picture -->
+  <img src="https://sapcentricfinancials.com/wp-content/uploads/sapcentricfinancials/2015/11/Website-Photo-Placeholder-1-600x600.jpg" alt="Profile Pic" width="200px" height="200px" class="img-filter" id="defaultpic">
+  <form class="profilepic" enctype="multipart/form-data">
+      <label for="profileImage">Choose Profile Image</label>
+      <span id="filename"></span>
+      <input type="file" name="profileImage" id="profileImage" class="black profileImage">
+      <br>
+      <button type="submit" value="Upload Photo" id="profile-btn" class="btn btn-sml btn-primary">Upload Photo</button>
+    </form>
+    {{/with}}
+
+    <!-- {{#if editing}}
+     <form>
+       <ul>
+         <li class="detailsonleft">
+           <div>
+             <ul>
+               <li>
+                 Your Name:<br>
+                 <input id="name" name ="username" value="{{username}}"/>
+               </li>
+               <li>
+                 About:<br>
+                 <textarea id="aboutme" name="about"></textarea>
+               </li>
+             </ul>
+           </div>
+         </li>
+         <li>
+           <div class="detailsonright">
+             <div id="firstname">
+               First Name: <br>
+               <input name="fName" id= "fName" value="{{firstname}}"/>
+             </div>
+
+             <div id="lastname">
+               Last Name: <br>
+               <input id="name" name="name" placeholder="{{lastname}}"/>
+             </div>
+
+             <div id="emailaddress">
+               Email Address:<br>
+               <input type="email" name="email" size="30" placeholder="{{email}}"/>
+             </div>
+
+             <div id="birthdate">
+               <form>
+                 Birthdate: <br>
+                 <input type="date" name="bday" style="font-size: 15px" value="{{date}}">
+               </form>
+             </div>
+
+             <div id="gender">
+               <form>
+                 Sex:
+                 <select id="sex" name="gender">
+                   {{#if female}}
+                   <option value="female">Female</option>
+                   <option value="male">Male</option>
+                     {{else}}
+                       <option value="male">Male</option>
+                       <option value="female">Female</option>
+                   {{/if}}
+                 </select>
+               </form>
+             </div>
+           </div>
+         </li>
+          <li class="updatebutton">
+           <input type="submit" id="edit-profile" value="Update Changes"/>
+         </li> -->
+       <!-- </ul>
+     </form> -->
+
+   <!-- {{else}}  -->
+  <form>
+    <ul>
+      <li class="detailsonleft">
+        <div>
+          <ul>
+            <li>
+              Your Name:<br>
+              <input id="name" name ="username" value="{{username}}"/>
+            </li>
+            <li>
+              About:<br>
+              <textarea id="aboutme" name="about"></textarea>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <div class="detailsonright">
+          <div id="firstname">
+            First Name: <br>
+            <input id="firstName" name="firstName" value="{{firstname}}"/>
+          </div>
+
+          <div id="lastname">
+            Last Name: <br>
+            <input id="lastName" name="lastName" value="{{lastname}}"/>
+          </div>
+
+          <div id="emailaddress">
+            Email Address:<br>
+            <input id="email" name="email" size="30" value="{{email}}"/>
+          </div>
+
+          <div id="birthdate">
+            <!-- <form> -->
+              Birthdate: <br>
+              <input type="date" name="bday" style="font-size: 15px" value="{{date}}">
+            <!-- </form> -->
+          </div>
+
+          <div id="sex">
+            <!-- <form> -->
+              Sex:
+              <select id="gender" name="gender">
+                {{#if female}}
+                <option value="female">Female</option>
+                <option value="male">Male</option>
+                  {{else}}
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                {{/if}}
+              </select>
+            <!-- </form> -->
+          </div>
+        </div>
+      </li>
+      <li class="updatebutton">
+        <input type="submit" id="edit-profile" value="Update Changes"/>
+      </li>
+    </ul>
+  </form>
+  <!-- {{/if}} -->
+  </div>
+</template>
+
+
+
+
+
+<template name="friends">
+  <div class="topnav">
+    <a href="#"><img src="https://preview.ibb.co/gy925J/Untitled.png" alt="calendar" class="logo "></a>
+    <div style="position: static; left: 400px; top:18px; position: absolute;">
+      <!--  {{> loginButtons}} -->
+    </div>
+
+    <div class="navButtons">
+      <a href="/main" class="nav">Home</a>
+      <a href="/about" class="nav">About</a>
+      <a href="/settings" class="nav">Settings</a>
+      <a href="/support" class="nav">Support</a>
+      <i class="material-icons" style="font-size:30px; margin-top: 15px;">person_pin</i>
+    </div>
+  </div>
+
+  <h1 id="friendsHeader">Friend Circle</h1>
+  <hr style="width:80%;font-weight: 30px;size:20; position:relative;top:20px">
+
+</template>
+
+<template name="mainPage">
+  {{#if currentUser}}
+    {{> main}}
+    {{> viewMode}}
+    {{> createEvent}}
+  {{else}}
+    {{> loginPage}}
+    {{>register}}
+    {{>login}}
+  {{/if}}
+</template>
